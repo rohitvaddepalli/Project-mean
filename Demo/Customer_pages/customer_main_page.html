@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            background-color: #20c997;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            align-items: center;
+        }
+        .logo {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+        }
+        .search-login {
+            display: flex;
+            align-items: center;
+        }
+        .search-bar {
+            margin-right: 10px;
+            padding: 5px;
+        }
+        .login-btn {
+            padding: 5px 10px;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        .store-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .store-item {
+            width: 150px;
+            height: 150px;
+            background-color: #d3d3d3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo"></div>
+        <div class="search-login">
+            <input type="text" class="search-bar" placeholder="Search store here..">
+            <button class="login-btn" onclick="redirectToLogin()">Login</button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="store-grid">
+            <div class="store-item" onclick="redirectToLogin('Store-1')">Store-1</div>
+            <div class="store-item" onclick="redirectToLogin('Store-2')">Store-2</div>
+            <div class="store-item" onclick="redirectToLogin('Store-3')">Store-3</div>
+            <div class="store-item" onclick="redirectToLogin('Store-4')">Store-4</div>
+            <div class="store-item" onclick="redirectToLogin('Store-5')">Store-5</div>
+        </div>
+    </div>
+    <script>
+        function redirectToLogin(store = '') {
+            window.location.href = `login.html?store=${store}`;
+        }
+    </script>
+</body>
+</html>

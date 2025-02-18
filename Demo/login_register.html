@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Register Pages</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #ecf0f1;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            background: #1abc9c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #16a085;
+        }
+
+        .link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .link a {
+            color: #1abc9c;
+            text-decoration: none;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="login-page">
+        <h2>Login</h2>
+        <form id="loginForm" action="#" method="post">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <p id="error-message"></p>
+        </form>
+        <div class="link">
+            <p>Don't have an account? <a href="#" onclick="showRegisterPage()">Register</a></p>
+        </div>
+    </div>
+
+    <div class="container" id="register-page" style="display: none;">
+        <h2>Register</h2>
+        <form id="registerForm" action="#" method="post">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="register-email">Email</label>
+                <input type="email" id="register-email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="register-password">Password</label>
+                <input type="password" id="register-password" placeholder="Create a password" required>
+            </div>
+            <button type="submit" class="btn">Register</button>
+            <p id="register-error-message"></p>
+        </form>
+        <div class="link">
+            <p>Already have an account? <a href="#" onclick="showLoginPage()">Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        // script.js
+
+        // Functions to toggle between login and register pages
+        function showRegisterPage() {
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('register-page').style.display = 'block';
+        }
+
+        function showLoginPage() {
+            document.getElementById('login-page').style.display = 'block';
+            document.getElementById('register-page').style.display = 'none';
+        }
+
+        // Mock database of users with roles
+        const users = [
+        { email: "admin@example.com", password: "admin123", role: "admin" },
+        { email: "storeowner@example.com", password: "store123", role: "store_owner" },
+        { email: "customer@example.com", password: "customer123", role: "customer" }
+        ];
+
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Get input values
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        // Find user in the mock database
+        const user = users.find((u) => u.email === email && u.password === password);
+
+        if (user) {
+            // Redirect based on role
+            switch (user.role) {
+            case "admin":
+                window.location.href = "admin-dashboard.html";
+                break;
+            case "store_owner":
+                window.location.href = "businessowner.html";
+                break;
+            case "customer":
+                window.location.href = "customer-dashboard.html";
+                break;
+            default:
+                document.getElementById("error-message").textContent =
+                "Unexpected role. Please contact support.";
+            }
+        } else {
+            // Show error message if login fails
+            document.getElementById("error-message").textContent =
+            "Invalid email or password.";
+        }
+        });
+
+        document.getElementById("registerForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Get input values
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("register-email").value;
+        const password = document.getElementById("register-password").value;
+
+        // Add user to the mock database
+        users.push({ email, password, role: "customer" });
+
+        // Show success message
+        document.getElementById("register-error-message").textContent =
+        "Registration successful. Please login to continue.";
+        });
+    </script>
+</body>
+</html>
