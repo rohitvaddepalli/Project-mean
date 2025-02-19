@@ -55,6 +55,56 @@
         color: var(--accent-color);
     }
 
+    /* Store Container */
+    .store-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    /* Store Details */
+    .store-details {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .store-card {
+        background: #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        min-width: 400px;
+    }
+
+    .store-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .store-logo {
+        width: 50px;
+        height: 50px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .store-text h3 {
+        margin-bottom: 5px;
+    }
+
+    .store-actions {
+        margin-left: auto;
+    }
+
     main.main-content {
         padding: 20px;
         background: var(--background-light);
@@ -165,42 +215,26 @@
             </nav>
         </div>
 
-        <div class="main-content">
-            <!-- Add Store Front Section -->
-            <section id="store-front" class="section active">
-                <div class="store-header">
-                    <img id="storeLogoPreview" class="store-logo" alt="Store Logo">
-                    <h1 class="store-title" id="storeTitle"></h1>
-                </div>
-                
-                <h2>Latest Deals</h2>
-                <div class="deals-container" id="dealsContainer">
-                    <!-- Deal cards will be inserted here -->
-                </div>
-            </section>
-
-            <!-- Modified Store Setup Section -->
-            <section id="store-setup" class="section">
-                <form class="store-form" id="storeForm">
-                    <h2>Create Your Store</h2>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Store Name</label>
-                            <input type="text" id="storeName" required>
+        <!-- Store Front Section -->
+        <section id="store-front" class="section active">
+            <div class="store-container">
+                <main class="store-details">
+                    <div class="store-card">
+                        <div class="store-info">
+                            <img class="store-logo" src="logo-placeholder.png" alt="Store Logo">
+                            <div class="store-text">
+                                <h3>Store name</h3>
+                                <a href="Demo\Customer_pages\customer_main_page.html"></a>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea id="storeDescription" rows="4" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Upload Logo</label>
-                            <input type="file" id="storeLogo" accept="image/*">
-                            <div id="logoPreview" class="logo-preview"></div>
+                        <div class="store-actions">
+                            <button class="btn edit-btn">Edit</button>
+                            <button class="btn delete-btn">Delete</button>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Create Store</button>
-                </form>
-            </section>
+                </main>
+            </div>
+        </section>
 
         <!-- Products Section -->
         <section id="products" class="section" aria-labelledby="products-heading">
