@@ -40,9 +40,17 @@
             margin-bottom: 5px;
         }
 
-        input[type="text"], input[type="email"], input[type="password"] {
+        input[type="text"] {
             width: 100%;
             padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 7px;
             border: 1px solid #ddd;
             border-radius: 4px;
             box-sizing: border-box;
@@ -79,32 +87,32 @@
 </head>
 <body>
     <div class="container" id="register-page">
-        <h2>Register</h2>
-        <form id="registerForm">
+        <h2>Setup storefront</h2>
+        <form id="storeForm">
             <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" placeholder="Enter your full name" required>
+                <label for="name">Store Name</label>
+                <input type="text" id="name" placeholder="Enter your store name" required>
             </div>
             <div class="form-group">
-                <label for="register-email">Email</label>
-                <input type="email" id="register-email" placeholder="Enter your email" required>
+                <label for="seller">Seller name</label>
+                <input type="text" id="seller" placeholder="Enter your full name" required>
             </div>
             <div class="form-group">
-                <label for="register-password">Password</label>
-                <input type="password" id="register-password" placeholder="Create a password" required>
+                <label for="description">Description</label>
+                <input type="text" id="description" placeholder="Enter your store description" required>
             </div>
             <div class="form-group">
-                <label for="register-password">Confirm Password</label>
-                <input type="password" id="confirm-password" placeholder="Confirm password" required>
+                <label for="logo-image">Upload Logo Picture</label>
+                <input type="file" id="logo-image" />
             </div>
             <button type="submit" class="btn">Register</button>
             <p id="register-error-message"></p>
         </form>
     </div>
     <script>
-        document.getElementById('registerForm').addEventListener('submit', function(event) {
+        document.getElementById('storeForm').addEventListener('submit', function(event) {
         event.preventDefault();
-        window.location.href = 'storefont.html';
+        window.location.href = 'business-dashboard.html';
     });
     </script>
 </body>
