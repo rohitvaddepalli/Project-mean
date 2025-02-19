@@ -236,7 +236,7 @@
                             <img class="store-logo" src="logo-placeholder.png" alt="Store Logo">
                             <div class="store-text">
                                 <h3>Store name</h3>
-                                <a href="customer_main_page.html">store-name.com</a>
+                                <a href="/Demo/Customer_pages/customer_main_page.html">store-name.com</a>
                             </div>
                         </div>
                         <div class="store-actions">
@@ -322,19 +322,6 @@
             const sectionId = navItem.getAttribute("data-section");
             showSection(sectionId);
             });
-        });
-
-        const createStoreBtn = document.getElementById("create-store-btn");
-        createStoreBtn.addEventListener("click", () => {
-            const storeName = document.getElementById("store-name").value.trim();
-            const storeDescription = document.getElementById("store-description").value.trim();
-            const storeLogo = document.getElementById("store-logo").files[0];
-
-            if (!storeName || !storeDescription) {
-            alert("Please fill in the store name and description.");
-            return;
-            }
-            alert(`Store "${storeName}" has been created successfully!`);
         });
 
         const addProductBtn = document.getElementById("add-product-btn");
