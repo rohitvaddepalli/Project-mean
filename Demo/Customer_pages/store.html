@@ -97,6 +97,8 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            text-decoration: none;
+            cursor: pointer;
         }
 
         .item-image {
@@ -167,55 +169,44 @@
 
     <!-- Item Grid -->
     <div class="item-grid">
-        <div class="item-card">
+        <a href="product.html" class="item-card">
             <div class="item-image"></div>
             <div class="item-details">
                 <span class="item-name">Item-1</span>
                 <span class="item-price">Price - ₹190</span>
             </div>
-        </div>
-        <div class="item-card">
+        </a>
+        <a href="product.html" class="item-card">
             <div class="item-image"></div>
             <div class="item-details">
                 <span class="item-name">Item-2</span>
                 <span class="item-price">Price - ₹190</span>
             </div>
-        </div>
-        <div class="item-card">
+        </a>
+        <a href="product.html" class="item-card">
             <div class="item-image"></div>
             <div class="item-details">
                 <span class="item-name">Item-3</span>
                 <span class="item-price">Price - ₹190</span>
             </div>
-        </div>
-        <div class="item-card">
+        </a>
+        <a href="product.html" class="item-card">
             <div class="item-image"></div>
             <div class="item-details">
                 <span class="item-name">Item-4</span>
                 <span class="item-price">Price - ₹190</span>
             </div>
-        </div>
-        <div class="item-card">
+        </a>
+        <a href="product.html" class="item-card">
             <div class="item-image"></div>
             <div class="item-details">
                 <span class="item-name">Item-5</span>
                 <span class="item-price">Price - ₹190</span>
             </div>
-        </div>
+        </a>
     </div>
 
     <script>
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Add animation on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
