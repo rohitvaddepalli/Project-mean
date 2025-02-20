@@ -148,34 +148,23 @@
     <!-- Store Grid -->
     <div class="store-grid">
         <div class="store-card">
-            <span class="store-name">Store-1</span>
+            <a class="store-name" href="store.html">Store-1</a>
         </div>
         <div class="store-card">
-            <span class="store-name">Store-2</span>
+            <a class="store-name" href="store.html">Store-2</a>
         </div>
         <div class="store-card">
-            <span class="store-name">Store-3</span>
+            <a class="store-name" href="store.html">Store-3</a>
         </div>
         <div class="store-card">
-            <span class="store-name">Store-4</span>
+            <a class="store-name" href="store.html">Store-4</a>
         </div>
         <div class="store-card">
-            <span class="store-name">Store-5</span>
+            <a class="store-name" href="store.html">Store-5</a>
         </div>
     </div>
 
     <script>
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Search functionality
         const searchInput = document.querySelector('.search-input');
         const storeCards = document.querySelectorAll('.store-card');
 

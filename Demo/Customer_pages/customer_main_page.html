@@ -154,32 +154,23 @@
     <!-- Store Grid -->
     <div class="store-grid">
         <div class="store-card">
-            <span class="store-name">Store-1</span>
+            <a class="store-name" href="../main/login_register.html">Store-1</a>
         </div>
         <div class="store-card">
-            <span class="store-name">Store-2</span>
+            <a class="store-name" href="../main/login_register.html">Store-2</a>
         </div>
         <div class="store-card">
-            <span class="store-name">Store-3</span>
+            <a class="store-name" href="../main/login_register.html">Store-3</a>
         </div>
         <div class="store-card">
-            <span class="store-name">Store-4</span>
+            <a class="store-name" href="../main/login_register.html">Store-4</a>
         </div>
         <div class="store-card">
-            <span class="store-name">Store-5</span>
+            <a class="store-name" href="../main/login_register.html">Store-5</a>
         </div>
     </div>
 
     <script>
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
 
         // Search functionality
         const searchInput = document.querySelector('.search-input');
@@ -207,10 +198,7 @@
             });
         });
 
-        storeCards.forEach(card => {
-            card.style.opacity = 0;
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'all 0.6s ease';
+        document.querySelectorAll('.store-card').forEach(card => {
             observer.observe(card);
         });
     </script>
