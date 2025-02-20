@@ -2,87 +2,217 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Page</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        .header {
-            background-color: #20c997;
+
+        :root {
+            --primary-color: #00BFA5;
+            --white: #ffffff;
+            --gray: #f0f0f0;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
-            padding: 10px;
             align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
+
         .logo {
+            background-color: var(--white);
+            border-radius: 50%;
             width: 50px;
             height: 50px;
-            background-color: white;
-            border-radius: 50%;
-        }
-        .search-login {
             display: flex;
             align-items: center;
+            justify-content: center;
+            font-weight: bold;
         }
-        .search-bar {
-            margin-right: 10px;
-            padding: 5px;
+
+        .search-container {
+            flex: 0 1 40%;
+            position: relative;
         }
-        .login-btn {
-            padding: 5px 10px;
-            background-color: white;
+
+        .search-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
             border: none;
             cursor: pointer;
         }
-        .content {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f0f0f0;
-        }
-        .store-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .store-item {
-            width: 150px;
-            height: 150px;
-            background-color: #d3d3d3;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+
+        .login-btn {
+            background-color: var(--white);
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            border: none;
             cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background-color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: #333;
+        }
+
+        /* Store Grid */
+        .store-grid {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .store-card {
+            background-color: var(--gray);
+            aspect-ratio: 1;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .store-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .store-card::after {
+            content: '→';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .store-card:hover::after {
+            opacity: 1;
+        }
+
+        .store-name {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo"></div>
-        <div class="search-login">
-            <input type="text" class="search-bar" placeholder="Search store here..">
-            <button class="login-btn" onclick="redirectToLogin()">Login</button>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">LOGO</div>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search store here..">
+            <button class="search-btn">🔍</button>
+        </div>
+        <button class="login-btn" onclick="window.location.href='../main/login_register.html'">Login</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Customer page</h1>
+    </section>
+
+    <!-- Store Grid -->
+    <div class="store-grid">
+        <div class="store-card">
+            <span class="store-name">Store-1</span>
+        </div>
+        <div class="store-card">
+            <span class="store-name">Store-2</span>
+        </div>
+        <div class="store-card">
+            <span class="store-name">Store-3</span>
+        </div>
+        <div class="store-card">
+            <span class="store-name">Store-4</span>
+        </div>
+        <div class="store-card">
+            <span class="store-name">Store-5</span>
         </div>
     </div>
-    <div class="content">
-        <div class="store-grid">
-            <div class="store-item" onclick="redirectToLogin('Store-1')">Store-1</div>
-            <div class="store-item" onclick="redirectToLogin('Store-2')">Store-2</div>
-            <div class="store-item" onclick="redirectToLogin('Store-3')">Store-3</div>
-            <div class="store-item" onclick="redirectToLogin('Store-4')">Store-4</div>
-            <div class="store-item" onclick="redirectToLogin('Store-5')">Store-5</div>
-        </div>
-    </div>
+
     <script>
-        function redirectToLogin(store = '') {
-            window.location.href = `login.html?store=${store}`;
-        }
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        const storeCards = document.querySelectorAll('.store-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            storeCards.forEach(card => {
+                const storeName = card.querySelector('.store-name').textContent.toLowerCase();
+                if (storeName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        storeCards.forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
     </script>
 </body>
 </html>

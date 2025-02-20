@@ -3,137 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Page</title>
+    <title>Product Details</title>
     <style>
-        .container {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #fff;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        
-        .header {
+
+        :root {
+            --primary-color: #00BFA5;
+            --white: #ffffff;
+            --gray: #f0f0f0;
+            --dark-gray: #333;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #20c997;
-            padding: 10px;
-            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
-        
+
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        .navigation button {
-            margin-left: 10px;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-        
-        .product-details {
+            background-color: var(--white);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
             display: flex;
-            margin-top: 20px;
-        }
-        
-        .image-placeholder {
-            width: 300px;
-            height: 300px;
-            background-color: #e0e0e0;
-            margin-right: 20px;
-        }
-        
-        .info {
-            flex: 1;
-        }
-        
-        .product-name {
-            font-size: 28px;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
         }
-        
-        .description {
-            margin: 10px 0;
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
         }
-        
-        .price {
-            font-size: 24px;
-            color: #ff5722;
-        }
-        
-        .buttons {
-            margin-top: 20px;
-        }
-        
-        .buttons button {
-            margin-right: 10px;
-            padding: 10px 20px;
+
+        .track-order-btn, .cart-btn, .profile-btn {
+            background-color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
         }
-        
-        .buy-now {
-            background-color: #4caf50;
-            color: white;
+
+        .cart-btn, .profile-btn {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            justify-content: center;
         }
-        
-        .add-to-cart {
-            background-color: #2196f3;
-            color: white;
+
+        .product-container {
+            margin-top: 100px;
+            padding: 2rem;
+            display: flex;
+            gap: 4rem;
+            max-width: 1600px;
+            margin-inline: auto;
         }
-        
-        .divider {
-            margin: 20px 0;
-            border: none;
-            border-top: 1px solid #ccc;
+
+        .product-image {
+            flex: 1;
+            background-color: var(--gray);
+            aspect-ratio: 1;
+            max-width: 500px;
         }
-        
-        .reviews-title {
-            font-size: 20px;
+
+        .product-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .product-name {
+            font-size: 2.5rem;
+            color: var(--dark-gray);
+        }
+
+        .product-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .product-price {
+            font-size: 2rem;
             font-weight: bold;
+            color: var(--dark-gray);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .buy-now-btn, .add-to-cart-btn {
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .buy-now-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .add-to-cart-btn {
+            background-color: var(--gray);
+            color: var(--dark-gray);
+        }
+
+        .reviews-section {
+            margin-top: 3rem;
+        }
+
+        .reviews-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .product-image {
+                max-width: 100%;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="logo">LOGO</div>
-            <nav class="navigation">
-                <button class="track-order">Track order</button>
-                <button class="cart">🛒</button>
-                <button class="user">👤</button>
-            </nav>
-        </header>
-        
-        <div class="product-details">
-            <div class="image-placeholder"></div>
-            <div class="info">
-                <h1 class="product-name">Product Name</h1>
-                <p class="description">Description</p>
-                <p class="price">₹Price</p>
-                <div class="buttons">
-                    <button class="buy-now">Buy Now</button>
-                    <button class="add-to-cart">Add to cart</button>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">LOGO</div>
+        <div class="nav-actions">
+            <button class="track-order-btn">Track order</button>
+            <button class="cart-btn">🛒</button>
+            <button class="profile-btn">👤</button>
+        </div>
+    </nav>
+
+    <!-- Product Details -->
+    <div class="product-container">
+        <div class="product-image"></div>
+        <div class="product-info">
+            <h1 class="product-name">Premium Wireless Headphones</h1>
+            
+            <p class="product-description">
+                Experience crystal-clear sound with our premium wireless headphones. 
+                Featuring advanced noise cancellation technology, 40-hour battery life, 
+                and ultra-comfortable ear cushions. Perfect for music enthusiasts and 
+                professionals alike.
+            </p>
+
+            <div class="product-price">₹1,999</div>
+
+            <div class="button-group">
+                <button class="buy-now-btn">Buy Now</button>
+                <button class="add-to-cart-btn">Add to cart</button>
+            </div>
+
+            <div class="reviews-section">
+                <h2 class="reviews-title">Reviews</h2>
+                <div class="review">
+                    <h3>Amazing Sound Quality ⭐⭐⭐⭐⭐</h3>
+                    <p>The sound quality is exceptional, and the battery life is impressive. 
+                    Definitely worth the investment!</p>
+                </div>
+                <div class="review">
+                    <h3>Comfortable Fit ⭐⭐⭐⭐</h3>
+                    <p>Very comfortable for long listening sessions. The noise cancellation 
+                    works great in noisy environments.</p>
+                </div>
+                <div class="review">
+                    <h3>Great Value ⭐⭐⭐⭐⭐</h3>
+                    <p>These headphones offer excellent value for money. The build quality 
+                    is premium and the sound is balanced.</p>
                 </div>
             </div>
         </div>
-        
-        <hr class="divider">
-        
-        <h2 class="reviews-title">Reviews</h2>
-        <hr class="divider">
     </div>
 
     <script>
-        document.querySelector('.buy-now').addEventListener('click', function() {
-            alert('Thank you for your purchase!');
+        // Add to cart functionality
+        let cartCount = 0;
+        const cartBtn = document.querySelector('.cart-btn');
+        const addToCartBtn = document.querySelector('.add-to-cart-btn');
+        
+        addToCartBtn.addEventListener('click', () => {
+            cartCount++;
+            cartBtn.innerHTML = `🛒 ${cartCount}`;
+            
+            // Add animation to cart button
+            cartBtn.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                cartBtn.style.transform = 'scale(1)';
+            }, 200);
+
+            // Change button text temporarily
+            addToCartBtn.textContent = 'Added to Cart!';
+            setTimeout(() => {
+                addToCartBtn.textContent = 'Add to Cart';
+            }, 1500);
         });
 
-        document.querySelector('.add-to-cart').addEventListener('click', function() {
-            alert('Product added to cart!');
+        // Buy Now button animation
+        const buyNowBtn = document.querySelector('.buy-now-btn');
+        buyNowBtn.addEventListener('click', () => {
+            buyNowBtn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                buyNowBtn.style.transform = 'scale(1)';
+            }, 200);
+        });
+
+        // Image zoom effect on hover
+        const productImage = document.querySelector('.product-image');
+        productImage.addEventListener('mouseover', () => {
+            productImage.style.transform = 'scale(1.05)';
+        });
+        productImage.addEventListener('mouseout', () => {
+            productImage.style.transform = 'scale(1)';
         });
     </script>
 </body>

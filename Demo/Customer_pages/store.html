@@ -2,93 +2,253 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Page</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        .header {
-            background-color: #20c997;
+
+        :root {
+            --primary-color: #00BFA5;
+            --white: #ffffff;
+            --gray: #f0f0f0;
+            --dark-gray: #333;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
-            padding: 10px;
             align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
+
         .logo {
+            background-color: var(--white);
+            border-radius: 50%;
             width: 50px;
             height: 50px;
-            background-color: white;
-            border-radius: 50%;
-        }
-        .header-buttons {
             display: flex;
-            gap: 10px;
-        }
-        .content {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
             align-items: center;
-            background-color: #f0f0f0;
-        }
-        .items-grid {
-            display: flex;
             justify-content: center;
-            gap: 20px;
+            font-weight: bold;
         }
-        .store-item {
-            width: 150px;
-            height: 200px;
-            background-color: #d3d3d3;
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .track-order-btn, .cart-btn, .profile-btn {
+            background-color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .cart-btn, .profile-btn {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            justify-content: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background-color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--dark-gray);
+        }
+
+        /* Item Grid */
+        .item-grid {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .item-card {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            gap: 1rem;
+        }
+
+        .item-image {
+            background-color: var(--gray);
+            aspect-ratio: 1;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .item-image:hover {
+            transform: scale(1.02);
+        }
+
+        .item-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .item-name {
+            font-weight: bold;
+            color: var(--dark-gray);
+        }
+
+        .item-price {
+            font-weight: bold;
+            color: var(--dark-gray);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .track-order-btn span {
+                display: none;
+            }
+
+            .navbar {
+                padding: 1rem;
+            }
+
+            .item-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo"></div>
-        <div class="header-buttons">
-            <button onclick="trackOrder()">Track order</button>
-            <div class="cart-icon">🛒</div>
-            <div class="profile-icon">👤</div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">LOGO</div>
+        <div class="nav-actions">
+            <button class="track-order-btn">
+                <span>Track order</span>
+            </button>
+            <button class="cart-btn">🛒</button>
+            <button class="profile-btn">👤</button>
         </div>
-    </div>
-    <div class="content">
-        <div class="items-grid">
-            <div class="store-item">
-                <div>Item-1</div>
-                <div>Price - ₹190</div>
-            </div>
-            <div class="store-item">
-                <div>Item-2</div>
-                <div>Price - ₹190</div>
-            </div>
-            <div class="store-item">
-                <div>Item-3</div>
-                <div>Price - ₹190</div>
-            </div>
-            <div class="store-item">
-                <div>Item-4</div>
-                <div>Price - ₹190</div>
-            </div>
-            <div class="store-item">
-                <div>Item-5</div>
-                <div>Price - ₹190</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Store</h1>
+    </section>
+
+    <!-- Item Grid -->
+    <div class="item-grid">
+        <div class="item-card">
+            <div class="item-image"></div>
+            <div class="item-details">
+                <span class="item-name">Item-1</span>
+                <span class="item-price">Price - ₹190</span>
             </div>
         </div>
+        <div class="item-card">
+            <div class="item-image"></div>
+            <div class="item-details">
+                <span class="item-name">Item-2</span>
+                <span class="item-price">Price - ₹190</span>
+            </div>
+        </div>
+        <div class="item-card">
+            <div class="item-image"></div>
+            <div class="item-details">
+                <span class="item-name">Item-3</span>
+                <span class="item-price">Price - ₹190</span>
+            </div>
+        </div>
+        <div class="item-card">
+            <div class="item-image"></div>
+            <div class="item-details">
+                <span class="item-name">Item-4</span>
+                <span class="item-price">Price - ₹190</span>
+            </div>
+        </div>
+        <div class="item-card">
+            <div class="item-image"></div>
+            <div class="item-details">
+                <span class="item-name">Item-5</span>
+                <span class="item-price">Price - ₹190</span>
+            </div>
+        </div>
     </div>
+
     <script>
-        function trackOrder() {
-            alert('Order tracking functionality to be implemented');
-        }
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Animate items on scroll
+        document.querySelectorAll('.item-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Cart functionality
+        let cartCount = 0;
+        const cartBtn = document.querySelector('.cart-btn');
+        
+        document.querySelectorAll('.item-card').forEach(card => {
+            card.addEventListener('click', () => {
+                cartCount++;
+                cartBtn.innerHTML = `🛒 ${cartCount}`;
+                
+                // Add animation to cart button
+                cartBtn.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    cartBtn.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
     </script>
 </body>
 </html>

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login and Register Pages</title>
     <style>
-        /* General Styles */
         body {
             font-family: 'Arial', sans-serif;
             background: #ecf0f1;
@@ -80,7 +79,7 @@
 <body>
     <div class="container" id="login-page">
         <h2>Login</h2>
-        <form id="loginForm" action="#" method="post">
+        <form id="loginForm">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" placeholder="Enter your email" required>
@@ -99,7 +98,7 @@
 
     <div class="container" id="register-page" style="display: none;">
         <h2>Register</h2>
-        <form id="registerForm" action="#" method="post">
+        <form id="registerForm">
             <div class="form-group">
                 <label for="name">Full Name</label>
                 <input type="text" id="name" placeholder="Enter your full name" required>
@@ -121,9 +120,6 @@
     </div>
 
     <script>
-        // script.js
-
-        // Functions to toggle between login and register pages
         function showRegisterPage() {
             document.getElementById('login-page').style.display = 'none';
             document.getElementById('register-page').style.display = 'block';
@@ -134,7 +130,6 @@
             document.getElementById('register-page').style.display = 'none';
         }
 
-        // Mock database of users with roles
         const users = [
         { email: "admin@example.com", password: "admin123", role: "admin" },
         { email: "storeowner@example.com", password: "store123", role: "store_owner" },
@@ -144,31 +139,27 @@
         document.getElementById("loginForm").addEventListener("submit", function (e) {
         e.preventDefault();
 
-        // Get input values
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        // Find user in the mock database
         const user = users.find((u) => u.email === email && u.password === password);
 
         if (user) {
-            // Redirect based on role
             switch (user.role) {
             case "admin":
-                window.location.href = "admin-dashboard.html";
+                window.location.href = "/Demo/admin_pages/admin-dashboard.html";
                 break;
             case "store_owner":
-                window.location.href = "businessowner.html";
+                window.location.href = "/Demo/business_pages/business-dashboard.html";
                 break;
             case "customer":
-                window.location.href = "customer-dashboard.html";
+                window.location.href = "/Demo/Customer_pages/logged_in.html";
                 break;
             default:
                 document.getElementById("error-message").textContent =
                 "Unexpected role. Please contact support.";
             }
         } else {
-            // Show error message if login fails
             document.getElementById("error-message").textContent =
             "Invalid email or password.";
         }
@@ -177,15 +168,12 @@
         document.getElementById("registerForm").addEventListener("submit", function (e) {
         e.preventDefault();
 
-        // Get input values
         const name = document.getElementById("name").value;
         const email = document.getElementById("register-email").value;
         const password = document.getElementById("register-password").value;
 
-        // Add user to the mock database
         users.push({ email, password, role: "customer" });
 
-        // Show success message
         document.getElementById("register-error-message").textContent =
         "Registration successful. Please login to continue.";
         });

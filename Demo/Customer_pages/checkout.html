@@ -9,172 +9,305 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
         }
 
-        body {
-            background-color: #f4f4f4;
-            padding: 20px;
+        :root {
+            --primary-color: #00BFA5;
+            --white: #ffffff;
+            --gray: #f0f0f0;
+            --dark-gray: #333;
         }
 
-        .checkout-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        /* Navbar Styles */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
+        .logo {
+            background-color: var(--white);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
         }
 
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-top: 5px;
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
         }
 
-        .card-details {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 10px;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 20px;
+        .track-order-btn, .cart-btn, .profile-btn {
+            background-color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
-            width: 100%;
-            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        button:hover {
-            background-color: #45a049;
+        /* Checkout Container */
+        .checkout-container {
+            margin-top: 100px;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin-inline: auto;
         }
 
-        .error {
-            color: red;
-            font-size: 14px;
-            margin-top: 5px;
-            display: none;
+        /* Product Summary */
+        .product-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
 
-        .order-summary {
-            background-color: #f8f8f8;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
+        .product-name {
+            font-size: 2rem;
+            color: var(--dark-gray);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--dark-gray);
+        }
+
+        .product-image {
+            background-color: var(--gray);
+            aspect-ratio: 1;
+            max-width: 300px;
+        }
+
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray);
+        }
+
+        /* Shipping Form */
+        .shipping-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: var(--dark-gray);
+        }
+
+        .form-group input {
+            padding: 0.8rem;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            background-color: var(--gray);
+        }
+
+        .proceed-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            align-self: flex-end;
+        }
+
+        .proceed-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">LOGO</div>
+        <div class="nav-actions">
+            <button class="track-order-btn">Track order</button>
+            <button class="cart-btn">🛒</button>
+            <button class="profile-btn">👤</button>
+        </div>
+    </nav>
+
+    <!-- Checkout Container -->
     <div class="checkout-container">
-        <h1>Checkout</h1>
-        
-        <div class="order-summary">
-            <h2>Order Summary</h2>
-            <p>Total Amount: $<span id="total-amount">99.99</span></p>
+        <!-- Product Summary -->
+        <div class="product-summary">
+            <h1 class="product-name">Premium Wireless Headphones</h1>
+            <div class="product-price">₹1,999</div>
+            <div class="product-image"></div>
+            <div class="total-section">
+                <h2>Total:</h2>
+                <div class="product-price">₹1,999</div>
+            </div>
         </div>
 
-        <form id="checkout-form">
+        <!-- Shipping Information -->
+        <div class="shipping-info">
+            <h2>Shipping Information</h2>
+            
             <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" required>
-                <div class="error" id="name-error">Please enter your full name</div>
+                <label for="address">Delivery Address</label>
+                <input type="text" id="address" placeholder="Enter your full address">
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" required>
-                <div class="error" id="email-error">Please enter a valid email</div>
+                <input type="email" id="email" placeholder="Enter your email">
             </div>
 
             <div class="form-group">
-                <label for="address">Shipping Address</label>
-                <input type="text" id="address" required>
-                <div class="error" id="address-error">Please enter your address</div>
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="Enter your phone number">
             </div>
 
-            <div class="form-group">
-                <label>Card Details</label>
-                <div class="card-details">
-                    <input type="text" id="card-number" placeholder="Card Number" maxlength="16" required>
-                    <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required>
-                    <input type="text" id="cvv" placeholder="CVV" maxlength="3" required>
+            <h2>Payment Method</h2>
+            <div class="payment-methods">
+                <div class="payment-option">
+                    <input type="radio" name="payment" id="netbanking">
+                    <label for="netbanking">Internet Banking</label>
                 </div>
-                <div class="error" id="card-error">Please enter valid card details</div>
+
+                <div class="payment-option">
+                    <input type="radio" name="payment" id="upi">
+                    <label for="upi">UPI</label>
+                </div>
+
+                <div class="payment-option">
+                    <input type="radio" name="payment" id="card">
+                    <label for="card">Credit/Debit Card</label>
+                </div>
             </div>
 
-            <button type="submit">Place Order</button>
-        </form>
+            <button class="proceed-btn">Proceed to Pay</button>
+        </div>
     </div>
 
     <script>
-        document.getElementById('checkout-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Form validation
+        const proceedBtn = document.querySelector('.proceed-btn');
+        const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
+        const paymentOptions = document.querySelectorAll('input[type="radio"]');
+
+        function validateForm() {
+            let isValid = true;
             
-            // Reset errors
-            document.querySelectorAll('.error').forEach(error => {
-                error.style.display = 'none';
+            // Check if all fields are filled
+            inputs.forEach(input => {
+                if (!input.value) {
+                    isValid = false;
+                    input.style.borderColor = 'red';
+                } else {
+                    input.style.borderColor = 'var(--gray)';
+                }
             });
 
-            let isValid = true;
+            // Check if payment method is selected
+            let paymentSelected = false;
+            paymentOptions.forEach(option => {
+                if (option.checked) paymentSelected = true;
+            });
 
-            // Validate name
-            const name = document.getElementById('name').value;
-            if (name.trim() === '') {
-                document.getElementById('name-error').style.display = 'block';
+            if (!paymentSelected) {
                 isValid = false;
+                document.querySelector('.payment-methods').style.borderColor = 'red';
             }
 
-            // Validate email
-            const email = document.getElementById('email').value;
-            if (!email.match(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/)) {
-                document.getElementById('email-error').style.display = 'block';
-                isValid = false;
-            }
+            return isValid;
+        }
 
-            // Validate address
-            const address = document.getElementById('address').value;
-            if (address.trim() === '') {
-                document.getElementById('address-error').style.display = 'block';
-                isValid = false;
-            }
+        proceedBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (validateForm()) {
+                // Animate button
+                proceedBtn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    proceedBtn.style.transform = 'scale(1)';
+                    proceedBtn.textContent = 'Processing...';
+                }, 200);
 
-            // Validate card number (simple validation)
-            const cardNumber = document.getElementById('card-number').value;
-            if (!cardNumber.match(/^\d{16}$/)) {
-                document.getElementById('card-error').style.display = 'block';
-                isValid = false;
-            }
-
-            // If all validations pass
-            if (isValid) {
-                alert('Order placed successfully!');
-                this.reset();
+                // Simulate processing
+                setTimeout(() => {
+                    alert('Order placed successfully!');
+                    proceedBtn.textContent = 'Proceed to Pay';
+                }, 2000);
+            } else {
+                alert('Please fill in all required fields and select a payment method.');
             }
         });
 
-        // Format expiry date input
-        document.getElementById('expiry').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length >= 2) {
-                value = value.slice(0,2) + '/' + value.slice(2);
-            }
-            e.target.value = value;
+        // Real-time validation
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.value) {
+                    input.style.borderColor = 'var(--gray)';
+                }
+            });
+        });
+
+        // Payment option selection effect
+        paymentOptions.forEach(option => {
+            option.addEventListener('change', () => {
+                document.querySelector('.payment-methods').style.borderColor = 'var(--gray)';
+            });
         });
     </script>
 </body>
